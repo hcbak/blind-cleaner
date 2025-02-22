@@ -1,0 +1,41 @@
+= blind Cleaner
+
+블라인드에 내가 작성한 글을 전체 삭제하는 기능이 없어 개발한 Python 스크립트 입니다.
+
+Playwright를 사용하여 개발하고 있습니다.
+
+== Information
+
+[cols=2]
+|===
+|OS
+|Windows 11
+
+|Language
+|Python 3.13.2
+
+|Library
+|Playwright 1.50.0
+|===
+
+== Installation
+
+프로젝트 최상단에 위치한 후 아래 명령어 입력
+
+- pipenv 가상환경 설치
+
+```shell
+py -m pip install --user pipenv
+```
+
+- playwright 설치
+
+```shell
+py -m pipenv install pytest-playwright
+```
+
+- playwright 브라우저 설치
+
+```shell
+playwright install
+```
