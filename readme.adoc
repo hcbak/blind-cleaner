@@ -28,14 +28,14 @@ Playwright를 사용하여 개발하고 있습니다.
 py -m pip install --user pipenv
 ```
 
-- playwright 설치
+- 종속성 설치
 
 ```shell
-py -m pipenv install pytest-playwright
+py -m pipenv install
 ```
 
-- playwright 브라우저 설치
+- 브라우저 바이너리 설치
 
 ```shell
-playwright install
+playwright install chromium
 ```
