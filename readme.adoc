@@ -39,3 +39,22 @@ py -m pipenv install
 ```shell
 playwright install chromium
 ```
+
+== Preview
+
+.1. [자동] 로그인(blind 앱 인증 대기)
+[%collapsible]
+====
+image::https://s3.huichan.kr/shere/github/blind-cleaner/01_login.webp[01_login]
+====
+
+.2. [자동] 내가 작성한 글 전체 목록 확인
+[%collapsible]
+====
+image::https://s3.huichan.kr/shere/github/blind-cleaner/02_renew.webp[02_renew]
+====
+.3. [자동] 삭제
+[%collapsible]
+====
+image::https://s3.huichan.kr/shere/github/blind-cleaner/03_delete.webp[03_delete]
+====
