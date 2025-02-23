@@ -1,12 +1,41 @@
 import time
 from playwright.sync_api import Playwright, sync_playwright
 
-# 항목 분류
-def postsCategory(posts_list):
-    item = ["post", "cmnt", "poll"]
+# 댓글 삭제
+def deleteCmnt(page, cmntList):
+    for cmnt in cmntList:
+        print("https://www.teamblind.com" + cmnt)
+        page.goto("https://www.teamblind.com" + cmnt)
+        while True:
+            try:
+                # 댓글 펼치기
+                count = 0
+                while True:
+                    try:
+                        page.query_selector("button.btn-reply").click()
+                        count = 0
+                    except:
+                        count += 1
+                        if count > 3: break
+                        else: page.wait_for_timeout(500)
+                
+                # 삭제
+                page.get_by_text("삭제", exact=True).locator("../../../../../..").first.wait_for(timeout=500)
+                page.get_by_text("삭제", exact=True).locator("../../../../../..").first.click()
+                page.get_by_text("삭제", exact=True).first.click()
+                page.get_by_role("button", name="삭제").click()
+            except:
+                print("댓글 삭제 완료\n")
+                break
 
-    for i in item:
-        print("{}: {}".format(i, len([element.get_attribute("href") for element in posts_list.query_selector_all("li." + i + " div.tit a")])))
+# 항목 분류
+def postsCategory(page, posts_list):
+    # item = ["post", "cmnt", "poll"]
+
+    # for i in item:
+    #     print("{}: {}".format(i, len([element.get_attribute("href") for element in posts_list.query_selector_all("li." + i + " div.tit a")])))
+
+    deleteCmnt(page, set([element.get_attribute("href") for element in posts_list.query_selector_all("li.cmnt div.tit a")]))
 
 def run(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
@@ -41,7 +70,7 @@ def run(playwright: Playwright) -> None:
             latestTime = time.time()
 
     # 항목 분류
-    postsCategory(page.query_selector("div.posts_list"))
+    postsCategory(page, page.query_selector("div.posts_list"))
 
     # 스크립트 종료
     context.close()
